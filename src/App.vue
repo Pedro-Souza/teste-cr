@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="container"><productsList /></div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import productsList from "./components/productsList.vue";
 export default {
   name: "app",
   components: {
-    HelloWorld
+    productsList
   }
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url(https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+.container {
+  margin: 30px auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+body {
+  margin: 0;
+}
+@media (min-width: 1280px) {
+  .container {
+    width: 1280px;
+  }
 }
 </style>
