@@ -94,6 +94,8 @@ export default {
   justify-content: center;
   align-items: center;
   display: none;
+  flex: 1;
+  justify-content: flex-end;
 }
 .styleProduct:hover .deleteProduct {
   display: flex;
