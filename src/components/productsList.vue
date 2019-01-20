@@ -3,7 +3,9 @@
     <div class="sectionHeader">
       <p class="titleHeader">Games</p>
       <select @change="changeFilter" v-model="selectFilter">
-        <option class="styleSelect" selected="true" value="mostPop">Mais Populares</option>
+        <option class="styleSelect" selected="true" value="mostPop"
+          >Mais Populares</option
+        >
         <option class="styleSelect" value="lossPop">Menos populares</option>
         <option class="styleSelect" value="bigPrice">Maior preço</option>
         <option class="styleSelect" value="lowPrice">Menor preço</option>
@@ -50,6 +52,10 @@ export default {
       });
   },
   methods: {
+    addProduct: function(product) {
+      //this.$store.dispatch('checkout/setName', 'b')
+      this.$store.commit("setName", product);
+    },
     changeFilter: function() {
       if (this.selectFilter === "alfa") this.orderName();
       if (this.selectFilter === "mostPop") this.mostPop();

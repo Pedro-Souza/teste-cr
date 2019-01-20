@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <div class="container"><productsList /></div>
+    <div class="container"><productsList /> <checkout /></div>
   </div>
 </template>
 
 <script>
-import productsList from "./components/productsList.vue";
+import productsList from "@/components/productsList.vue";
+import checkout from "@/components/checkout.vue";
 export default {
   name: "app",
   components: {
-    productsList
+    productsList,
+    checkout
   }
 };
 </script>
