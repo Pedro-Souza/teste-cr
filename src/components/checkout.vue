@@ -236,7 +236,7 @@ export default {
 }
 @media (max-width: 500px) {
   .checkout {
-    display: none;
+    width: 100%;
   }
 }
 </style>

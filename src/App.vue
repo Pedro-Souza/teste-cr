@@ -28,6 +28,11 @@ export default {
 body {
   margin: 0;
 }
+@media (max-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+}
 @media (min-width: 1280px) {
   .container {
     width: 1280px;
