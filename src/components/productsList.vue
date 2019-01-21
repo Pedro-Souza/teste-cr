@@ -19,7 +19,7 @@
         :key="product.id"
         v-on:click="addProduct(product)"
       >
-        <div class="content"><img :src="'static/'+product.image" /></div>
+        <div class="content"><img :src="'static/' + product.image" /></div>
         <div class="infosProduct">
           <p class="nameGame">{{ product.name }}</p>
           <p class="priceGame">R$ {{ product.price }}</p>
@@ -49,8 +49,7 @@ export default {
   },
   methods: {
     addProduct: function(product) {
-      //this.$store.dispatch('checkout/setName', 'b')
-      this.$store.commit("setName", product);
+      this.$store.dispatch("addProduct", product);
     },
     changeFilter: function() {
       if (this.selectFilter === "alfa") this.orderName();
@@ -126,6 +125,7 @@ export default {
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .infosProduct {
   margin-bottom: 40px;

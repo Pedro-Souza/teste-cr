@@ -2,47 +2,48 @@
   <div class="checkout">
     <h3>
       Carrinho
-      <span class="totalItens" v-if="products.length > 0"
-        >({{ products.length }} itens)</span
+      <span class="totalItens" v-if="totalProducts > 0"
+        >({{ totalProducts }} itens)</span
       >
     </h3>
     <div v-bind:class="getClassSection">
-      <img v-if="products.length == 0" src="../assets/chart.svg" />
-      <p class="title" v-if="products.length == 0">Até o momento,</p>
-      <p class="title" v-if="products.length == 0">O seu carrinho está vazio</p>
-      <div
-        class="styleProduct"
-        v-if="products.length > 0"
-        v-for="product in products"
-        :key="product.id"
-      >
-        <div class="containerImage">
-          <img
-            src="https://raw.githubusercontent.com/ConsultaRemedios/frontend-challenge/master/assets/shards-of-darkness.png"
-            alt=""
-          />
-        </div>
-        <div class="styleInfos">
-          <p style="color: #7F7575;">{{ product.name }}</p>
-          <p style="color: #423B3B;">R$ {{ product.price }}</p>
-        </div>
-        <div v-on:click="removeProduct(product.id)" class="deleteProduct">
-          <img width="15" src="../assets/error.svg" />
+      <img v-if="totalProducts == 0" src="../assets/chart.svg" />
+      <p class="title" v-if="totalProducts == 0">Até o momento,</p>
+      <p class="title" v-if="totalProducts == 0">O seu carrinho está vazio</p>
+      <div v-if="totalProducts > 0">
+        <div
+          class="styleProduct"
+          v-for="product in getProducts"
+          :key="product.id"
+        >
+          <div class="containerImage">
+            <img
+              src="https://raw.githubusercontent.com/ConsultaRemedios/frontend-challenge/master/assets/shards-of-darkness.png"
+              alt=""
+            />
+          </div>
+          <div class="styleInfos">
+            <p style="color: #7F7575;">{{ product.name }}</p>
+            <p style="color: #423B3B;">R$ {{ product.price }}</p>
+          </div>
+          <div v-on:click="removeProduct(product.id)" class="deleteProduct">
+            <img width="15" src="../assets/error.svg" />
+          </div>
         </div>
       </div>
     </div>
-    <div class="footerCart" v-if="products.length > 0">
+    <div class="footerCart" v-if="totalProducts > 0">
       <div class="subTotal">
         <span class="styleFontFooter">Subtotal</span>
-        <span class="styleValue">R$ {{ calcSubTotal() }}</span>
+        <span class="styleValue">R$ {{ this.calcSubTotal }}</span>
       </div>
       <div class="frete">
         <span class="styleFontFooter">Frete</span>
-        <span class="styleValue">R$ {{ calcFrete() }}</span>
+        <span class="styleValue">R$ {{ this.calcFrete }}</span>
       </div>
       <div class="cartTotal">
         <span class="styleFontFooter">Total</span>
-        <span class="styleValue styleTotalValue">R$ {{ calcTotal() }}</span>
+        <span class="styleValue styleTotalValue">R$ {{ this.calcTotal }}</span>
       </div>
       <button v-on:click="removeProduct" class="buttonFinish">
         Finalizar compra
@@ -52,37 +53,25 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "checkout",
 
   computed: {
-    products() {
-      return this.$store.state.checkout.products;
-    },
+    ...mapGetters([
+      "getProducts",
+      "calcSubTotal",
+      "calcFrete",
+      "totalProducts",
+      "calcTotal"
+    ]),
     getClassSection() {
-      return this.products.length > 0 ? "contentProducts" : "section";
+      return this.totalProducts > 0 ? "contentProducts" : "section";
     }
   },
   methods: {
-    calcFrete() {
-      return this.calcSubTotal() > 250.0
-        ? "00,00"
-        : `${(this.products.length * 10.0).toFixed(2)}`;
-    },
-    calcSubTotal() {
-      return this.products
-        .reduce((sum, product) => {
-          return sum + product.price;
-        }, 0)
-        .toFixed(2);
-    },
-    calcTotal() {
-      return (
-        parseInt(this.calcFrete()) + parseInt(this.calcSubTotal())
-      ).toFixed(2);
-    },
     removeProduct(id) {
-      this.$store.commit("removeProduct", id);
+      this.$store.dispatch("removeProduct", id);
     }
   }
 };
@@ -90,7 +79,6 @@ export default {
 
 <style>
 .deleteProduct {
-  display: flex;
   justify-content: center;
   align-items: center;
   display: none;
@@ -187,6 +175,7 @@ export default {
 }
 
 .checkout {
+  margin-top: 17px;
   width: 262px;
   height: fit-content;
   min-height: 325px;
@@ -237,6 +226,9 @@ export default {
   margin-bottom: 18px;
 }
 @media (max-width: 500px) {
+  .deleteProduct {
+    display: flex;
+  }
   .checkout {
     width: 100%;
   }
