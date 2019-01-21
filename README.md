@@ -1,4 +1,7 @@
-# teste-cr
+# Teste FrontEnd - Consulta Remedios
+
+Instruções para rodar e preparar o projeto para produção.
+O projeto também pode ser visto já rodando em https://teste-cr.netlify.com/
 
 ## Instalando dependências do projeto
 ```
