@@ -1,34 +1,21 @@
 # teste-cr
 
-## Project setup
+## Instalando dependências do projeto
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Rodando o projeto localmente
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
+### Preparando projeto para produção
 ```
 yarn run build
 ```
 
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
+### Rodando  unittests
 ```
 yarn run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
