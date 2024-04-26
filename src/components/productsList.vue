@@ -41,7 +41,7 @@ export default {
   created() {
     axios
       .get(
-        "https://raw.githubusercontent.com/ConsultaRemedios/frontend-challenge/master/products.json"
+        "https://raw.githubusercontent.com/jpmsegurado/test-consulta-remedios/master/src/assets/products.json"
       )
       .then(res => {
         this.products = res.data;

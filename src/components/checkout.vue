@@ -18,7 +18,7 @@
         >
           <div class="containerImage">
             <img
-              src="https://raw.githubusercontent.com/ConsultaRemedios/frontend-challenge/master/assets/shards-of-darkness.png"
+              src="https://raw.githubusercontent.com/jpmsegurado/test-consulta-remedios/master/src/assets/shards-of-darkness.png"
               alt=""
             />
           </div>

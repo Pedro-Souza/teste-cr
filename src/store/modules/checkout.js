@@ -30,10 +30,10 @@ export default {
     totalProducts: state => state.products.length,
     getProducts: state => state.products,
     calcSubTotal: state =>
-      state.products
+      parseFloat(state.products
         .reduce((sum, product) => {
           return sum + product.price;
-        }, 0)
+        }, 0))
         .toFixed(2),
     calcFrete: (state, getters) =>
       getters.calcSubTotal > 250.0
